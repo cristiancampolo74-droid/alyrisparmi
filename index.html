@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petali — I miei risparmi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--pink:#f7c9d8;--pink2:#fdeaf0;--rose:#d95f8b;--rose-dark:#a83c67;--ink:#47323b;--muted:#927b85;--cream:#fffaf8;--green:#538a6c;--line:#f1dce4;--shadow:0 12px 32px rgba(171,82,117,.09)}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.shell{display:flex;min-height:100vh}.sidebar{width:245px;background:#fff4f7;border-right:1px solid var(--line);padding:28px 18px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-icon{width:42px;height:42px;border-radius:15px;background:var(--rose);display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 6px 15px #d95f8b44}.brand strong{font-family:'Playfair Display',serif;font-size:25px;letter-spacing:.2px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#866d78;text-align:left;padding:13px 14px;border-radius:13px;font-weight:600;display:flex;gap:12px;align-items:center}.nav button.active,.nav button:hover{background:#f8dbe5;color:var(--rose-dark)}.nav .ico{font-size:18px;width:23px;text-align:center}.side-note{margin-top:auto;background:white;border:1px solid var(--line);border-radius:18px;padding:16px;color:var(--muted);font-size:12px;line-height:1.6}.side-note span{display:block;font-size:23px;margin-bottom:7px}.main{flex:1;min-width:0;padding:30px clamp(20px,4vw,58px) 50px;max-width:1500px;margin:0 auto;width:100%}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.eyebrow{text-transform:uppercase;letter-spacing:1.8px;color:var(--rose);font-size:10px;font-weight:700}.topbar h1{font-family:'Playfair Display',serif;font-size:clamp(27px,3vw,38px);margin:5px 0 0}.date-chip{background:white;border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--muted);font-size:12px;white-space:nowrap}.page{display:none}.page.active{display:block}.welcome{background:linear-gradient(115deg,#f8d8e3,#fff0f4 72%,#fce7ed);border:1px solid #f5d3df;border-radius:25px;padding:27px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;overflow:hidden;margin-bottom:23px}.welcome:after{content:'✿';position:absolute;font-size:170px;right:25%;top:-58px;color:#ffffff66;transform:rotate(-15deg);pointer-events:none}.welcome h2{font-family:'Playfair Display',serif;font-size:27px;margin:0 0 8px}.welcome p{color:#8d6475;margin:0;max-width:460px;line-height:1.6;font-size:13px}.welcome-flower{font-size:66px;z-index:1;filter:drop-shadow(0 8px 8px #d95f8b22)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:24px}.stat,.card{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.stat{padding:20px 21px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:600}.stat-icon{width:35px;height:35px;border-radius:12px;background:var(--pink2);display:grid;place-items:center;font-size:17px}.stat strong{display:block;font-size:27px;margin:15px 0 5px;letter-spacing:-.8px}.stat small{color:var(--muted);font-size:11px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:26px 0 14px}.section-head h2{font-family:'Playfair Display',serif;font-size:22px;margin:0}.text-btn{border:0;background:transparent;color:var(--rose-dark);font-weight:700;font-size:12px;padding:9px}.dashboard-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.card{padding:22px}.card h3{font-size:15px;margin:0 0 7px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}.activity-list{display:grid;gap:0}.activity{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #f8edf1}.activity:last-child{border-bottom:0}.activity-icon{width:38px;height:38px;border-radius:13px;background:#fff0f4;display:grid;place-items:center;font-size:17px;flex-shrink:0}.activity-main{flex:1;min-width:0}.activity-main strong{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.activity-main small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.amount{font-size:13px;font-weight:700;white-space:nowrap}.positive{color:var(--green)}.negative{color:var(--rose-dark)}.goals-mini{display:grid;gap:17px}.goal-row-top{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-bottom:9px}.goal-row-top strong{font-weight:700}.goal-row-top span{color:var(--muted)}.progress{height:8px;background:#f9e9ef;border-radius:99px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,#e88aab,#d95f8b);border-radius:99px;transition:width .25s}.empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}.empty span{font-size:31px;display:block;margin-bottom:8px}.btn{border:0;border-radius:12px;padding:12px 16px;background:var(--rose);color:white;font-weight:700;font-size:12px;box-shadow:0 5px 14px #d95f8b26}.btn:hover{background:var(--rose-dark)}.btn.secondary{background:white;color:var(--rose-dark);border:1px solid var(--line);box-shadow:none}.btn.small{padding:9px 12px}.form-card{max-width:680px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700;color:#765965}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:#fffdfd;border-radius:11px;padding:12px;color:var(--ink);outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:#e38bab;box-shadow:0 0 0 3px #f9e4ec}.field textarea{resize:vertical;min-height:75px}.form-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}.helper{font-size:11px;color:var(--muted);line-height:1.5;margin-top:13px}.boards-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.board-card{padding:0;overflow:hidden}.board-banner{height:90px;background:linear-gradient(130deg,#f8d2df,#fff0f4);display:flex;align-items:center;justify-content:space-between;padding:18px 20px}.board-banner span{font-size:35px}.board-banner small{font-size:10px;color:#a15e78;font-weight:700;text-transform:uppercase;letter-spacing:1px}.board-content{padding:19px}.board-content h3{font-family:'Playfair Display',serif;font-size:19px;margin:0 0 6px}.board-content .target{font-size:12px;color:var(--muted);margin-bottom:17px}.board-balance{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:13px 0}.board-balance strong{font-size:21px}.board-balance span{font-size:11px;color:var(--muted)}.board-actions{display:flex;gap:8px;margin-top:17px}.board-actions button{flex:1}.tag{display:inline-flex;background:#e9f5ed;color:#477b5b;border-radius:99px;padding:5px 8px;font-size:10px;font-weight:700;margin-top:11px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.toolbar p{color:var(--muted);font-size:12px}.table-wrap{overflow-x:auto}.tx-table{width:100%;border-collapse:collapse;min-width:510px}.tx-table th{text-align:left;text-transform:uppercase;letter-spacing:1px;font-size:10px;color:var(--muted);padding:12px 10px;border-bottom:1px solid var(--line)}.tx-table td{padding:15px 10px;border-bottom:1px solid #f8edf1;font-size:12px}.tx-table tr:last-child td{border-bottom:0}.type-pill{background:#fff0f4;color:var(--rose-dark);border-radius:99px;padding:5px 8px;font-size:10px;font-weight:700}.delete-btn{border:0;background:transparent;color:#b89aa6;font-size:17px}.delete-btn:hover{color:#b4234f}.notice{padding:12px 15px;border-radius:12px;background:#fff2f5;color:#95516c;font-size:12px;margin-bottom:15px;display:none}.notice.show{display:block}.mobile-nav{display:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(71,50,59,.35);display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
+.modal-backdrop.open{display:flex}
+.modal-card{position:relative;background:#fffaf8;border:1px solid var(--line);border-radius:23px;padding:27px;width:min(100%,430px);box-shadow:0 20px 70px #60304730}
+.modal-card h2{font-family:'Playfair Display',serif;margin:8px 0 10px;font-size:26px}
+.modal-close{position:absolute;right:15px;top:12px;border:0;background:transparent;color:var(--muted);font-size:25px}
+.modal-card .field{margin-top:20px}
+
+.flower-corner{position:fixed;bottom:-30px;right:20px;font-size:100px;opacity:.08;pointer-events:none;z-index:-1}
+@media(max-width:1000px){.sidebar{width:210px}.boards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr}}
+@media(max-width:700px){#page-spese .stats{grid-template-columns:1fr!important}.shell{display:block}.sidebar{display:none}.main{padding:22px 16px 90px}.topbar{align-items:flex-start}.date-chip{font-size:10px}.welcome{padding:23px 20px}.welcome-flower{font-size:45px}.welcome h2{font-size:23px}.stats{grid-template-columns:1fr;gap:10px}.stat{padding:15px 17px}.stat strong{font-size:23px;margin:9px 0 3px}.stat-top{font-size:11px}.stat-icon{width:30px;height:30px}.boards-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.mobile-nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#fff8fa;border-top:1px solid var(--line);padding:9px 5px calc(9px + env(safe-area-inset-bottom));z-index:5}.mobile-nav button{border:0;background:transparent;color:#987987;display:grid;gap:3px;justify-items:center;font-size:9px;font-weight:700;padding:5px}.mobile-nav button span{font-size:19px}.mobile-nav button.active{color:var(--rose-dark)}.card{padding:17px}.welcome:after{right:5%;font-size:130px}.welcome p{max-width:290px}}
+
+/* Petali — dettagli più delicati e diario delle spese più ordinato */
+:root{--pink:#f4bfd2;--pink2:#fff0f5;--rose:#d65d91;--rose-dark:#a63f70;--cream:#fff9fb;--line:#f1d9e4;--shadow:0 12px 32px rgba(171,82,117,.08)}
+body{background:radial-gradient(ellipse at 95% 4%,#fff0f6 0,transparent 30%),radial-gradient(ellipse at 3% 75%,#fff0f5 0,transparent 25%),var(--cream)}
+.brand-icon{border-radius:50% 50% 46% 46%;background:linear-gradient(145deg,#e887ad,#cc4e83)}
+.sidebar{background:linear-gradient(180deg,#fff1f6,#fff8fb 85%)}
+.welcome{background:linear-gradient(120deg,#f6d2e0,#fff0f6 62%,#fce5ee)}
+.stat,.card{border-radius:22px}
+.expense-layout{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(320px,1.1fr);gap:18px;align-items:start;margin-top:16px}
+.expense-form-card,.expense-history-card{padding:23px}
+.expense-card-heading{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.expense-card-heading h3{font-family:'Playfair Display',serif;font-size:19px;margin:0 0 5px}
+.expense-card-heading .sub{margin:0;line-height:1.5}
+.expense-heading-icon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#ffe6ef,#f8ccdc);font-size:22px}
+.expense-history-card .activity{padding:14px 0;gap:10px}
+.expense-history-card .activity-icon{width:42px;height:42px;flex:0 0 42px;border-radius:15px;background:#fff0f5;font-size:20px}
+.expense-history-card .activity-main strong{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4}
+.expense-history-card .amount{font-size:12px}
+.expense-history-card .delete-btn{width:29px;height:29px;flex:0 0 29px;border-radius:10px;background:#fff3f7;color:#b35b7e}
+.expense-history-card .delete-btn:hover,.delete-btn:hover{background:#fbe0e9;color:#a63f70}
+#page-spese .field select{cursor:pointer}
+#page-spese .form-actions{margin-top:21px}
+#page-spese .helper{background:#fff4f8;border-radius:12px;padding:11px 12px}
+.tx-table .delete-btn{width:auto;min-width:76px;height:32px;padding:0 9px;border-radius:10px;background:#fff0f5;color:#a93870;font-size:11px;font-weight:700;white-space:nowrap;border:1px solid #f0d4e1}.tx-table .delete-btn:hover{background:#f9dce7;color:#8e285b}
+.tx-table .delete-btn:hover{background:#f9dce7}
+@media(max-width:850px){.expense-layout{grid-template-columns:1fr}}
+@media(max-width:700px){.expense-form-card,.expense-history-card{padding:17px}.expense-layout{gap:13px}.expense-card-heading h3{font-size:18px}}
+
+
+/* Petali in fiore: più sfumature e piccoli fiori decorativi */
+:root{
+ --pink:#f6c4d7;--pink2:#fff0f6;--rose:#d95691;--rose-dark:#a93870;
+ --cream:#fff8fb;--line:#f0d4e1;--shadow:0 13px 34px rgba(185,76,125,.10)
+}
+body{
+ background:
+ radial-gradient(ellipse at 10% 8%,#ffe0ec 0,transparent 23%),
+ radial-gradient(ellipse at 91% 24%,#f9d4e5 0,transparent 21%),
+ radial-gradient(ellipse at 8% 85%,#ffe9f1 0,transparent 22%),
+ radial-gradient(ellipse at 95% 90%,#f5d0e2 0,transparent 18%),
+ var(--cream)
+}
+.main{position:relative;isolation:isolate}
+.flower-sprinkles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.flower-sprinkles span{position:absolute;opacity:.30;user-select:none;filter:drop-shadow(0 3px 4px #d65d9120);animation:petalFloat 7s ease-in-out infinite}
+.flower-sprinkles span:nth-child(1){left:18%;top:12%;font-size:24px;color:#e88bb3;animation-delay:-2s}
+.flower-sprinkles span:nth-child(2){left:88%;top:16%;font-size:31px;color:#e9a4c0;animation-delay:-4s}
+.flower-sprinkles span:nth-child(3){left:5%;top:48%;font-size:20px;color:#d95691;animation-delay:-1s}
+.flower-sprinkles span:nth-child(4){left:95%;top:51%;font-size:26px;color:#c95b94;animation-delay:-3s}
+.flower-sprinkles span:nth-child(5){left:24%;top:84%;font-size:28px;color:#f0a2c2;animation-delay:-5s}
+.flower-sprinkles span:nth-child(6){left:75%;top:78%;font-size:21px;color:#dc7eaa;animation-delay:-2.5s}
+.flower-sprinkles span:nth-child(7){left:47%;top:7%;font-size:17px;color:#e8a0bd;animation-delay:-1.5s}
+.flower-sprinkles span:nth-child(8){left:60%;top:94%;font-size:30px;color:#d95691;animation-delay:-3.5s}
+.flower-sprinkles span:nth-child(9){left:2%;top:28%;font-size:16px;color:#d95691;animation-delay:-4.5s}
+.flower-sprinkles span:nth-child(10){left:82%;top:39%;font-size:18px;color:#e8a0bd;animation-delay:-.5s}
+.flower-sprinkles span:nth-child(11){left:38%;top:72%;font-size:16px;color:#c95b94;animation-delay:-3s}
+.flower-sprinkles span:nth-child(12){left:68%;top:19%;font-size:14px;color:#e88bb3;animation-delay:-2s}
+@keyframes petalFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(10deg)}}
+.brand-icon{background:linear-gradient(145deg,#f3a8c5,#cf4d89)}
+.sidebar{background:linear-gradient(160deg,#ffedf4,#fff6fa 55%,#ffe4ef)}
+.nav button.active,.nav button:hover{background:linear-gradient(110deg,#f9d5e4,#fbe8f0);color:#a93870}
+.welcome{background:linear-gradient(115deg,#f6c5d9 0%,#fce0eb 38%,#fff0f6 72%,#f7d8e6 100%);border-color:#f0c5d7}
+.stat:nth-child(1) .stat-icon{background:#ffe0ec}
+.stat:nth-child(2) .stat-icon{background:#f7d5e7}
+.stat:nth-child(3) .stat-icon{background:#fce8ef}
+.btn{background:linear-gradient(120deg,#e875a5,#cf4b86)}
+.btn:hover{background:linear-gradient(120deg,#cf4b86,#ad356e)}
+.board-banner{background:linear-gradient(125deg,#f5bfd4,#fbe0eb 54%,#fff0f6)}
+.board-card:nth-child(3n+2) .board-banner{background:linear-gradient(125deg,#edc5ed,#f8e4f5 70%,#fff3fa)}
+.board-card:nth-child(3n) .board-banner{background:linear-gradient(125deg,#ffc9dc,#ffe9f1 70%,#fff5f8)}
+.progress div{background:linear-gradient(90deg,#f1a1c0,#d95691,#bd3e7d)}
+.flower-corner{opacity:.12;color:#d95691}
+@media(prefers-reduced-motion:reduce){.flower-sprinkles span{animation:none}}
+
+</style>
+</head>
+<body>
+<div class="flower-sprinkles" aria-hidden="true"><span>✿</span><span>🌸</span><span>✿</span><span>❀</span><span>🌷</span><span>✿</span><span>❀</span><span>🌸</span><span>✿</span><span>❀</span><span>✿</span><span>🌷</span></div>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">✿</div><div><strong>petali</strong><small>i miei piccoli grandi sogni</small></div></div>
+  <nav class="nav">
+    <button class="active" data-page="home"><span class="ico">⌂</span>Panoramica</button>
+    <button data-page="movimenti"><span class="ico">↕</span>Movimenti</button>
+    <button data-page="bacheche"><span class="ico">♡</span>Le mie bacheche</button>
+    <button data-page="spese"><span class="ico">🧾</span>Le mie spese</button>
+    <button data-page="nuovo"><span class="ico">＋</span>Nuovo movimento</button>
+  </nav>
+  <div class="side-note"><span>🌷</span><strong>Un passo alla volta</strong><br>Ogni piccolo risparmio ti avvicina a ciò che desideri.<button class="btn secondary small" id="reset-all" style="width:100%;margin-top:12px">↻ Ricomincia da zero</button></div>
+</aside>
+<main class="main">
+  <header class="topbar"><div><div class="eyebrow">Il tuo angolo dei risparmi</div><h1 id="pageTitle">La tua panoramica</h1></div><div class="date-chip" id="today"></div></header>
+  <div id="notice" class="notice"></div>
+  <section class="page active" id="page-home">
+    <div class="welcome"><div><h2>Ogni sogno comincia da qui ✨</h2><p>Tieni d'occhio i tuoi risparmi, organizza i tuoi obiettivi e festeggia ogni piccolo traguardo.</p></div><div class="welcome-flower">🌸</div></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-top">Risparmi disponibili <span class="stat-icon">💗</span></div><strong id="stat-savings">€ 0,00</strong><small>Il denaro ancora da destinare ai tuoi sogni</small></div>
+      <div class="stat"><div class="stat-top">Totale nelle bacheche <span class="stat-icon">🎀</span></div><strong id="stat-boards">€ 0,00</strong><small>Soldi già messi da parte per un obiettivo</small></div>
+      <div class="stat"><div class="stat-top">Risparmi accumulati <span class="stat-icon">🌷</span></div><strong id="stat-total">€ 0,00</strong><small>Risparmi netti, al netto dei prelievi</small></div>
+    </div>
+    <div class="dashboard-grid">
+      <div><div class="section-head"><h2>Movimenti recenti</h2><button class="text-btn" data-go="movimenti">Vedi tutti →</button></div><div class="card"><div id="recent-list" class="activity-list"></div></div></div>
+      <div><div class="section-head"><h2>I tuoi obiettivi</h2><button class="text-btn" data-go="bacheche">Tutte le bacheche →</button></div><div class="card"><p class="sub">Piccoli passi, grandi soddisfazioni.</p><div id="home-goals" class="goals-mini"></div></div></div>
+    </div>
+  </section>
+  <section class="page" id="page-movimenti">
+    <div class="toolbar"><div><h2 style="font-family:'Playfair Display',serif;margin:0">Registro movimenti</h2><p>Qui trovi tutti i tuoi versamenti, prelievi e trasferimenti.</p></div><button class="btn" data-go="nuovo">＋ Nuovo movimento</button></div>
+    <div class="card"><div class="table-wrap"><table class="tx-table"><thead><tr><th>Movimento</th><th>Data</th><th>Dettagli</th><th>Importo</th><th></th></tr></thead><tbody id="tx-body"></tbody></table></div><div id="tx-empty" class="empty"><span>🌸</span>Ancora nessun movimento.<br>Registra il tuo primo risparmio!</div></div>
+  </section>
+  <section class="page" id="page-bacheche">
+    <div class="toolbar"><div><h2 style="font-family:'Playfair Display',serif;margin:0">Le mie bacheche</h2><p>Crea un obiettivo e riempilo un po' alla volta.</p></div><button class="btn" data-go="nuova-bacheca">＋ Crea bacheca</button></div>
+    <div id="boards-grid" class="boards-grid"></div>
+    <div id="boards-empty" class="card empty"><span>🎀</span><strong>Qual è il tuo prossimo sogno?</strong><br>Crea una bacheca, inserisci cosa vuoi comprare e il suo prezzo.</div>
+  </section>
+
+  <section class="page" id="page-spese">
+    <div class="toolbar"><div><h2 style="font-family:'Playfair Display',serif;margin:0">Dove sono finiti i miei soldi? 🧾</h2><p>Registra ogni spesa pagata usando i soldi dei tuoi risparmi.</p></div></div>
+    <div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px">
+      <div class="stat"><div class="stat-top">Totale speso registrato <span class="stat-icon">🛍️</span></div><strong id="expense-total">€ 0,00</strong><small>Somma delle spese che hai inserito qui</small></div>
+      <div class="stat"><div class="stat-top">Risparmi disponibili <span class="stat-icon">💗</span></div><strong id="expense-available">€ 0,00</strong><small>Saldo attuale non assegnato alle bacheche</small></div>
+    </div>
+    <div class="expense-layout">
+      <div class="card expense-form-card">
+        <div class="expense-card-heading"><span class="expense-heading-icon">🛍️</span><div><h3>Registra una spesa</h3><p class="sub">Un piccolo promemoria per tenere tutto in ordine.</p></div></div>
+        <form id="expense-form"><div class="form-grid">
+          <div class="field full"><label for="expense-description">Per cosa hai speso i soldi?</label><input id="expense-description" maxlength="100" placeholder="es. pranzo, vestiti, benzina…" required></div>
+          <div class="field"><label for="expense-amount">Importo (€)</label><input id="expense-amount" type="number" min="0.01" step="0.01" placeholder="es. 15,00" required></div>
+          <div class="field"><label for="expense-date">Data</label><input id="expense-date" type="date" required></div>
+          <div class="field full"><label for="expense-symbol">Scegli un simbolo</label><select id="expense-symbol"><option value="🛍️">🛍️ Shopping</option><option value="🍕">🍕 Cibo</option><option value="☕">☕ Bar e colazioni</option><option value="⛽">⛽ Benzina e trasporti</option><option value="👗">👗 Vestiti</option><option value="💄">💄 Bellezza e cura personale</option><option value="🎮">🎮 Giochi e hobby</option><option value="🎁">🎁 Regali</option><option value="📱">📱 Tecnologia</option><option value="🏠">🏠 Casa</option><option value="🐾">🐾 Animali</option><option value="🌸">🌸 Altro</option></select></div>
+        </div><div class="form-actions"><button class="btn" type="submit">♡ Registra spesa</button><button class="btn secondary" type="reset">Svuota</button></div>
+        <p class="helper">La spesa verrà sottratta dai risparmi disponibili e comparirà anche in “I miei movimenti”.</p></form>
+      </div>
+      <div class="card expense-history-card"><div class="expense-card-heading"><span class="expense-heading-icon">🌷</span><div><h3>Il diario delle spese</h3><p class="sub">Le tue uscite, tutte in un unico posto.</p></div></div><div id="expense-list" class="activity-list"></div><div id="expense-empty" class="empty"><span>🌸</span><strong>Ancora nessuna spesa</strong><br>Quando registrerai un acquisto, lo troverai qui.</div></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-nuovo">
+    <div class="section-head" style="margin-top:0"><div><h2>Registra un movimento</h2><p class="sub" style="margin:7px 0 0">Aggiungi denaro ai risparmi o preleva una somma.</p></div></div>
+    <div class="card form-card">
+      <form id="tx-form">
+        <div class="form-grid">
+          <div class="field full"><label for="tx-type">Tipo di movimento</label><select id="tx-type"><option value="deposito">Versamento nei risparmi</option><option value="prelievo">Prelievo dai risparmi</option></select></div>
+          <div class="field"><label for="tx-amount">Importo (€)</label><input id="tx-amount" type="number" min="0.01" step="0.01" placeholder="es. 25,00" required></div>
+          <div class="field"><label for="tx-date">Data</label><input id="tx-date" type="date" required></div>
+          <div class="field full"><label for="tx-desc">Descrizione (facoltativa)</label><input id="tx-desc" maxlength="100" placeholder="es. paghetta, regalo, acquisto…"></div>
+        </div>
+        <div class="form-actions"><button class="btn" type="submit">Salva movimento</button><button class="btn secondary" type="reset">Svuota</button></div>
+        <p class="helper">I trasferimenti verso le bacheche non vengono conteggiati come spese: spostano solo i soldi dai risparmi disponibili al tuo obiettivo.</p>
+      </form>
+    </div>
+  </section>
+  <section class="page" id="page-nuova-bacheca">
+    <div class="section-head" style="margin-top:0"><div><h2 id="board-form-title">Crea una bacheca</h2><p class="sub" style="margin:7px 0 0">Dai un nome al tuo sogno e scegli quanto vuoi mettere da parte.</p></div></div>
+    <div class="card form-card"><form id="board-form"><input id="board-id" type="hidden"><div class="form-grid">
+      <div class="field full"><label for="board-name">Cosa vuoi comprare?</label><input id="board-name" maxlength="70" placeholder="es. Nuove cuffie, un viaggio…" required></div>
+      <div class="field"><label for="board-cost">Prezzo obiettivo (€)</label><input id="board-cost" type="number" min="0.01" step="0.01" placeholder="es. 250" required></div>
+      <div class="field"><label for="board-emoji">Scegli un simbolo</label><select id="board-emoji"><option>🎀</option><option>🎧</option><option>👟</option><option>🏍️</option><option>✈️</option><option>📱</option><option>💻</option><option>🎮</option><option>🌸</option><option>👜</option><option>📚</option><option>💝</option></select></div>
+    </div><div class="form-actions"><button class="btn" type="submit">Salva bacheca</button><button class="btn secondary" type="button" data-go="bacheche">Annulla</button></div></form></div>
+  </section>
+</main>
+</div>
+<nav class="mobile-nav"><button class="active" data-page="home"><span>⌂</span>Home</button><button data-page="movimenti"><span>↕</span>Movimenti</button><button data-page="bacheche"><span>♡</span>Bacheche</button><button data-page="spese"><span>🧾</span>Spese</button><button data-page="nuovo"><span>＋</span>Aggiungi</button></nav>
+
+<div id="fund-modal" class="modal-backdrop" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="fund-title">
+    <button type="button" class="modal-close" id="fund-close" aria-label="Chiudi">×</button>
+    <div class="eyebrow">Un piccolo passo verso il tuo sogno</div>
+    <h2 id="fund-title">Aggiungi soldi</h2>
+    <p id="fund-info" class="sub"></p>
+    <form id="fund-form">
+      <input id="fund-board-id" type="hidden">
+      <div class="field"><label for="fund-amount">Quanto vuoi trasferire? (€)</label><input id="fund-amount" type="number" min="0.01" step="0.01" placeholder="es. 20,00" required></div>
+      <div class="form-actions"><button class="btn" type="submit">Sposta nella bacheca</button><button class="btn secondary" type="button" id="fund-cancel">Annulla</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="reset-mobile" style="text-align:center;margin:26px 0 0"><button class="btn secondary small" id="reset-all-mobile">↻ Azzera i dati e ricomincia</button></div>
+<div class="flower-corner">✿</div>
+<script>
+const KEY='petali-savings-v1';
+const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n||0);
+const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let state={savings:0,boards:[],transactions:[],expenses:[]};
+try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&typeof saved==='object')state={...state,...saved};if(!Array.isArray(state.expenses))state.expenses=[];if(Array.isArray(state.transactions)){state.transactions=state.transactions.map(t=>{if(t.type==='trasferimento'&&!t.direction){t.direction=(t.label&&t.label.startsWith('Da bacheca a risparmi'))?'from-board':'to-board'};return t;})}}catch(e){}
+const pages={home:'La tua panoramica',movimenti:'I tuoi movimenti',bacheche:'Le mie bacheche',spese:'Le mie spese',nuovo:'Nuovo movimento','nuova-bacheca':'La tua bacheca'};
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function showNotice(msg){const n=document.getElementById('notice');n.textContent=msg;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),3200)}
+function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));const p=document.getElementById('page-'+page);if(p)p.classList.add('active');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.getElementById('pageTitle').textContent=pages[page]||'Petali';if(page==='nuova-bacheca'&&!document.getElementById('board-id').value){document.getElementById('board-form').reset();document.getElementById('board-id').value='';document.getElementById('board-form-title').textContent='Crea una bacheca'}window.scrollTo({top:0,behavior:'smooth'});render()}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+document.getElementById('today').textContent=new Intl.DateTimeFormat('it-IT',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
+document.getElementById('tx-date').value=todayISO();
+function moneyInBoards(){return state.boards.reduce((a,b)=>a+b.saved,0)}
+function totalSaved(){return state.transactions.reduce((a,t)=>a+(t.type==='deposito'?t.amount:t.type==='prelievo'?-t.amount:0),0)}
+function fmtDate(d){if(!d)return '—';const [y,m,day]=d.split('-');return `${day}/${m}/${y}`}
+function render(){
+ document.getElementById('stat-savings').textContent=euro(state.savings);
+ document.getElementById('stat-boards').textContent=euro(moneyInBoards());
+ document.getElementById('stat-total').textContent=euro(totalSaved());
+ const recent=[...state.transactions].reverse().slice(0,5);
+ document.getElementById('recent-list').innerHTML=recent.length?recent.map(t=>`<div class="activity"><div class="activity-icon">${t.type==='deposito'?'🌷':t.type==='prelievo'?'↘':t.type==='spesa'?'🧾':'🎀'}</div><div class="activity-main"><strong>${safe(t.label)}</strong><small>${fmtDate(t.date)}</small></div><div class="amount ${t.type==='deposito'?'positive':t.type==='prelievo'?'negative':''}">${t.type==='deposito'?'+':(t.type==='prelievo'||t.type==='spesa')?'−':''}${euro(t.amount)}</div></div>`).join(''):'<div class="empty"><span>🌸</span>I tuoi movimenti appariranno qui.</div>';
+ const goals=state.boards.slice(0,4);
+ document.getElementById('home-goals').innerHTML=goals.length?goals.map(b=>`<div><div class="goal-row-top"><strong>${safe(b.emoji)} ${safe(b.name)}</strong><span>${Math.min(100,Math.round(b.saved/b.cost*100))}%</span></div><div class="progress"><div style="width:${Math.min(100,b.saved/b.cost*100)}%"></div></div><div style="font-size:10px;color:var(--muted);margin-top:6px">${euro(b.saved)} di ${euro(b.cost)}</div></div>`).join(''):'<div class="empty"><span>🌱</span>Crea una bacheca per iniziare a inseguire un obiettivo.</div>';
+
+ const expenses=[...state.expenses].reverse();
+ document.getElementById('expense-total').textContent=euro(state.expenses.reduce((sum,x)=>sum+x.amount,0));
+ document.getElementById('expense-available').textContent=euro(state.savings);
+ document.getElementById('expense-list').innerHTML=expenses.map(x=>`<div class="activity"><div class="activity-icon expense-symbol">${safe(x.symbol||'🧾')}</div><div class="activity-main"><strong>${safe(x.description)}</strong><small>${fmtDate(x.date)}</small></div><div class="amount negative">−${euro(x.amount)}</div><button type="button" class="delete-btn" title="Elimina questa spesa" aria-label="Elimina questa spesa" data-delete-expense="${x.id}">×</button></div>`).join('');
+ document.getElementById('expense-empty').style.display=state.expenses.length?'none':'block';
+
+ document.getElementById('tx-body').innerHTML=[...state.transactions].reverse().map(t=>`<tr><td><span class="type-pill">${t.type==='deposito'?'Versamento':t.type==='prelievo'?'Prelievo':t.type==='spesa'?'Spesa':'Trasferimento'}</span></td><td>${fmtDate(t.date)}</td><td>${safe(t.label)}</td><td class="amount ${t.type==='deposito'?'positive':t.type==='prelievo'?'negative':''}">${t.type==='deposito'?'+':(t.type==='prelievo'||t.type==='spesa')?'−':''}${euro(t.amount)}</td><td><button type="button" class="delete-btn delete-movement-btn" title="Elimina questo movimento" aria-label="Elimina questo movimento" data-delete-tx="${t.id}">🗑 Elimina</button></td></tr>`).join('');
+ document.getElementById('tx-empty').style.display=state.transactions.length?'none':'block';
+ const grid=document.getElementById('boards-grid');
+ grid.innerHTML=state.boards.map(b=>{const pct=Math.min(100,b.saved/b.cost*100),done=b.saved>=b.cost;return `<article class="card board-card"><div class="board-banner"><small>${done?'Obiettivo raggiunto ✨':'Il tuo prossimo sogno'}</small><span>${safe(b.emoji)}</span></div><div class="board-content"><h3>${safe(b.name)}</h3><div class="target">Obiettivo: ${euro(b.cost)}</div><div class="progress"><div style="width:${pct}%"></div></div><div class="board-balance"><strong>${euro(b.saved)}</strong><span>${Math.round(pct)}% completato</span></div><div style="font-size:11px;color:var(--muted)">${done?'Bravissimo! Hai raggiunto il tuo obiettivo.':`Ti mancano ${euro(b.cost-b.saved)} per arrivare al traguardo.`}</div>${done?'<div class="tag">✓ Traguardo raggiunto</div>':''}<div class="board-actions"><button class="btn small" data-fund="${b.id}" ${done?'disabled style="opacity:.5"':''}>＋ Aggiungi soldi</button><button class="btn secondary small" data-edit="${b.id}">Modifica</button></div><div class="board-actions"><button class="btn secondary small" data-withdraw="${b.id}" ${b.saved<=0?'disabled style="opacity:.5"':''}>Preleva dalla bacheca</button><button class="btn secondary small" data-delete-board="${b.id}">Elimina</button></div></div></article>`}).join('');
+ document.getElementById('boards-empty').style.display=state.boards.length?'none':'block';
+}
+document.getElementById('tx-form').addEventListener('submit',e=>{e.preventDefault();const type=document.getElementById('tx-type').value,amount=Number(document.getElementById('tx-amount').value),date=document.getElementById('tx-date').value,desc=document.getElementById('tx-desc').value.trim();if(!Number.isFinite(amount)||amount<=0)return showNotice('Inserisci un importo valido.');if(type==='prelievo'&&amount>state.savings)return showNotice('Non hai abbastanza soldi nei risparmi disponibili.');state.savings+=type==='deposito'?amount:-amount;state.transactions.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),type,amount,date,label:desc||(type==='deposito'?'Versamento nei risparmi':'Prelievo dai risparmi')});save();e.target.reset();document.getElementById('tx-date').value=todayISO();showNotice('Movimento salvato con successo! 🌸');go('movimenti')});
+document.getElementById('board-form').addEventListener('submit',e=>{e.preventDefault();const id=document.getElementById('board-id').value,name=document.getElementById('board-name').value.trim(),cost=Number(document.getElementById('board-cost').value),emoji=document.getElementById('board-emoji').value;if(!name||!Number.isFinite(cost)||cost<=0)return showNotice('Inserisci un nome e un prezzo validi.');if(id){const b=state.boards.find(x=>x.id===id);if(b){b.name=name;b.cost=cost;b.emoji=emoji}}else{state.boards.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name,cost,emoji,saved:0})}save();e.target.reset();document.getElementById('board-id').value='';showNotice('Bacheca salvata! 💗');go('bacheche')});
+
+document.getElementById('expense-date').value=todayISO();
+document.getElementById('expense-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const description=document.getElementById('expense-description').value.trim();
+ const amount=Number(document.getElementById('expense-amount').value);
+ const date=document.getElementById('expense-date').value;
+ const symbol=document.getElementById('expense-symbol').value;
+ if(!description)return showNotice('Scrivi per cosa hai speso i soldi.');
+ if(!Number.isFinite(amount)||amount<=0)return showNotice('Inserisci un importo valido.');
+ if(amount>state.savings)return showNotice('Non hai abbastanza soldi nei risparmi disponibili per registrare questa spesa.');
+ const id=crypto.randomUUID?crypto.randomUUID():String(Date.now());
+ state.savings-=amount;
+ state.expenses.push({id,description,amount,date,symbol});
+ state.transactions.push({id,type:'spesa',amount,date,label:`${symbol} ${description}`,expenseId:id,symbol});
+ save();e.target.reset();document.getElementById('expense-date').value=todayISO();
+ showNotice('Spesa registrata e saldo aggiornato. 🧾');
+});
+
+document.addEventListener('click',e=>{
+ const fund=e.target.closest('[data-fund]');if(fund){const b=state.boards.find(x=>x.id===fund.dataset.fund);if(!b)return;if(state.savings<=0)return showNotice('Prima aggiungi dei soldi ai risparmi dalla pagina “Nuovo movimento”.');document.getElementById('fund-board-id').value=b.id;document.getElementById('fund-title').textContent=`Aggiungi soldi a ${b.name}`;document.getElementById('fund-info').textContent=`Disponibili nei risparmi: ${euro(state.savings)} · Mancano all’obiettivo: ${euro(Math.max(0,b.cost-b.saved))}`;document.getElementById('fund-amount').max=Math.min(state.savings,Math.max(0,b.cost-b.saved));document.getElementById('fund-amount').value='';document.getElementById('fund-modal').classList.add('open');document.getElementById('fund-modal').setAttribute('aria-hidden','false');setTimeout(()=>document.getElementById('fund-amount').focus(),50);}
+ const withdraw=e.target.closest('[data-withdraw]');if(withdraw){const b=state.boards.find(x=>x.id===withdraw.dataset.withdraw);if(!b)return;const txt=prompt(`Quanto vuoi riportare dai "${b.name}" ai risparmi disponibili?\\nNella bacheca: ${euro(b.saved)}`);if(txt===null)return;const amount=Number(txt.replace(',','.'));if(!Number.isFinite(amount)||amount<=0)return showNotice('Inserisci un importo valido.');if(amount>b.saved)return showNotice('La bacheca non contiene abbastanza soldi.');b.saved-=amount;state.savings+=amount;state.transactions.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),type:'trasferimento',amount,date:todayISO(),label:`Da bacheca a risparmi: ${b.name}`,boardId:b.id,direction:'from-board'});save();showNotice('Soldi riportati nei risparmi! 🌷')}
+ const edit=e.target.closest('[data-edit]');if(edit){const b=state.boards.find(x=>x.id===edit.dataset.edit);if(!b)return;document.getElementById('board-id').value=b.id;document.getElementById('board-name').value=b.name;document.getElementById('board-cost').value=b.cost;document.getElementById('board-emoji').value=b.emoji;document.getElementById('board-form-title').textContent='Modifica la bacheca';go('nuova-bacheca')}
+ const delBoard=e.target.closest('[data-delete-board]');if(delBoard){const b=state.boards.find(x=>x.id===delBoard.dataset.deleteBoard);if(!b)return;if(!confirm(`Eliminare la bacheca "${b.name}"? I ${euro(b.saved)} presenti torneranno ai risparmi disponibili.`))return;state.savings+=b.saved;state.boards=state.boards.filter(x=>x.id!==b.id);save();showNotice('Bacheca eliminata e saldo restituito ai risparmi.')}
+
+ const delExpense=e.target.closest('[data-delete-expense]');if(delExpense){const x=state.expenses.find(v=>v.id===delExpense.dataset.deleteExpense);if(!x)return;if(!confirm(`Eliminare la spesa "${x.description}"? I soldi verranno restituiti ai risparmi disponibili.`))return;state.savings+=x.amount;state.expenses=state.expenses.filter(v=>v.id!==x.id);state.transactions=state.transactions.filter(t=>t.expenseId!==x.id);save();showNotice('Spesa eliminata e soldi restituiti ai risparmi.')}
+
+ const delTx=e.target.closest('[data-delete-tx]');if(delTx){const t=state.transactions.find(x=>x.id===delTx.dataset.deleteTx);if(!t)return;if(!confirm(`Vuoi eliminare il movimento "${t.label}" di ${euro(t.amount)}? Il saldo verrà aggiornato.`))return;
+ if(t.type==='deposito'){state.savings-=t.amount}
+ else if(t.type==='prelievo'){state.savings+=t.amount}
+ else if(t.type==='spesa'){state.savings+=t.amount;state.expenses=state.expenses.filter(x=>x.id!==t.expenseId)}
+ else if(t.type==='trasferimento'){const b=state.boards.find(x=>x.id===t.boardId);const direction=t.direction || (t.label && t.label.startsWith('Da bacheca a risparmi') ? 'from-board' : 'to-board');if(b){if(direction==='to-board'){b.saved=Math.max(0,b.saved-t.amount);state.savings+=t.amount}else if(direction==='from-board'){b.saved+=t.amount;state.savings-=t.amount}else{b.saved=Math.max(0,b.saved-t.amount);state.savings+=t.amount}}}
+ state.transactions=state.transactions.filter(x=>x.id!==t.id);
+ save();showNotice('Movimento eliminato. Il saldo è stato aggiornato. Se hai già utilizzato quei soldi, controlla il saldo disponibile.')}
+});
+
+function closeFundModal(){document.getElementById('fund-modal').classList.remove('open');document.getElementById('fund-modal').setAttribute('aria-hidden','true')}
+document.getElementById('fund-close').addEventListener('click',closeFundModal);
+document.getElementById('fund-cancel').addEventListener('click',closeFundModal);
+document.getElementById('fund-modal').addEventListener('click',e=>{if(e.target.id==='fund-modal')closeFundModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFundModal()});
+document.getElementById('fund-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const id=document.getElementById('fund-board-id').value;
+ const b=state.boards.find(x=>x.id===id);
+ const amount=Number(document.getElementById('fund-amount').value);
+ if(!b)return showNotice('Bacheca non trovata. Riprova.');
+ const remaining=Math.max(0,b.cost-b.saved);
+ if(!Number.isFinite(amount)||amount<=0)return showNotice('Inserisci un importo valido.');
+ if(amount>state.savings)return showNotice('Non hai abbastanza soldi nei risparmi disponibili.');
+ if(amount>remaining)return showNotice(`Puoi aggiungere al massimo ${euro(remaining)} per raggiungere l’obiettivo.`);
+ state.savings-=amount;b.saved+=amount;
+ state.transactions.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),type:'trasferimento',amount,date:todayISO(),label:`Aggiunta a bacheca: ${b.name}`,boardId:b.id,direction:'to-board'});
+ save();closeFundModal();showNotice('Soldi spostati nella bacheca! 🎀');
+});
+
+
+function resetPetaliData(){
+ if(!confirm('Vuoi cancellare tutti i dati di Petali? Verranno eliminati risparmi, bacheche, movimenti e spese. Questa operazione non si può annullare.'))return;
+ state={savings:0,boards:[],transactions:[],expenses:[]};
+ localStorage.removeItem(KEY);
+ document.getElementById('tx-form').reset();
+ document.getElementById('tx-date').value=todayISO();
+ document.getElementById('expense-form').reset();
+ document.getElementById('expense-date').value=todayISO();
+ document.getElementById('board-form').reset();
+ document.getElementById('board-id').value='';
+ render();go('home');showNotice('Petali è pronto per ricominciare da zero. 🌸');
+}
+document.getElementById('reset-all')?.addEventListener('click',resetPetaliData);
+document.getElementById('reset-all-mobile')?.addEventListener('click',resetPetaliData);
+
+render();
+</script>
+</body>
+</html>
